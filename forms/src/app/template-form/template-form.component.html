@@ -1,24 +1,124 @@
 
 <p>template-form works!</p>
 
-<form #f="ngForm" (ngSubmit)="onSubmit(f)" >
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" class="form-horizontal" >
 
     <div class="mb-3">
-      <label for="nome" class="form-label">Nome</label>
-      <input type="text" class="form-control" name="nome" id="nome"  placeholder="Nome" [ngModel]="usuario.nome" required #nome="ngModel">
+
+        <div class="col-sm-12">
+            <label for="nome" class="form-label">Nome</label>
+        </div>
+        
+        <div class="col-sm-12">
+            <input type="text" class="form-control" name="nome" id="nome"  placeholder="Nome" [ngModel]="usuario.nome" required #nome="ngModel">
       
-        <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert"> 
-          Inserir o nome é obrigatório 
+            <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert"> 
+                Inserir o nome é obrigatório 
+            </div>
         </div>
     </div>
 
     <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" name="email" id="email" placeholder="nome@email.com" [ngModel]="usuario.email" required>
-      <!--pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"--> 
+        <div class="col-sm-12">
+            <label for="email" class="form-label">Email</label>
+        </div>
+
+        <div class="col-sm-12">
+            <input type="email" class="form-control" name="email" id="email" placeholder="nome@email.com" [ngModel]="usuario.email" required #email="ngModel">
+            <!--pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"--> 
+  
+            <div *ngIf="!email.valid && email.touched" class="alert alert-danger" role="alert"> 
+                Inserir o email é obrigatório 
+            </div>
+        </div>
     </div>
 
+    <div class="col-md-3">
+        <div class="col-sm-12">
+            <label for="cep" class="control-label">CEP</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="cep" name="cep" placeholder="12345-678" [ngModel]="usuario.cep" required #cep="ngModel">
+            <div *ngIf="!cep.valid && cep.touched" class="alert alert-danger" role="alert"> 
+                Inserir o cep é obrigatório 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-sm-12">
+            <label for="numero" class="control-label">Número</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="numero" name="numero" placeholder="123" [ngModel]="usuario.numero" required #numero="ngModel">
+            <div *ngIf="!numero.valid && numero.touched" class="alert alert-danger" role="alert"> 
+                Inserir o numero é obrigatório 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-sm-12">
+            <label for="complemento" class="control-label">Complemento</label>
+        </div>
+
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="complemento" name="complemento" placeholder="próximo à..."
+                [ngModel]="usuario.complemento">  <!--required #complemento="ngModel"-->
+        </div>
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-sm-12">
+            <label for="rua" class="control-label">Rua</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="rua" name="rua" [ngModel]="usuario.rua" required #rua="ngModel" readonly>
+            <div *ngIf="!rua.valid && rua.touched" class="alert alert-danger" role="alert"> 
+                Inserir a rua é obrigatório 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-sm-12">
+            <label for="bairro" class="control-label">Bairro</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="bairro" name="bairro" [ngModel]="usuario.bairro" required #bairro="ngModel">
+            <div *ngIf="!bairro.valid && bairro.touched" class="alert alert-danger" role="alert"> 
+                Inserir a bairro é obrigatório 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-sm-12">
+            <label for="cidade" class="control-label">Cidade</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="cidade" name="cidade" [ngModel]="usuario.cidade" required #cidade="ngModel">
+            <div *ngIf="!cidade.valid && cidade.touched" class="alert alert-danger" role="alert"> 
+                Inserir a cidade é obrigatório 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="col-sm-12">
+            <label for="estado" class="control-label">Estado</label>
+        </div>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" id="estado" name="estado" [ngModel]="usuario.estado" required #estado="ngModel">
+            <div *ngIf="!estado.valid && estado.touched" class="alert alert-danger" role="alert"> 
+                Inserir a Estado é obrigatório 
+            </div>
+        </div>
+    </div>
+    
     <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+    
 
     <app-form-debug [form]="f"></app-form-debug>
 </form>
