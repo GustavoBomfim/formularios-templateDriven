@@ -33,6 +33,7 @@
         </div>
     </div>
 
+    <div ngModelGroup="endereco">
     <div class="col-md-3">
         <div class="col-sm-12">
             <label for="cep" class="control-label">CEP</label>
@@ -105,18 +106,20 @@
         </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3"><!-- [ngClass]="aplicaCssErro(estado)" >-->
         <div class="col-sm-12">
             <label for="estado" class="control-label">Estado</label>
         </div>
         <div class="col-sm-12">
             <input type="text" class="form-control" id="estado" name="estado" [ngModel]="usuario.estado" required #estado="ngModel">
+
+
             <div *ngIf="!estado.valid && estado.touched" class="alert alert-danger" role="alert"> 
-                Inserir a Estado é obrigatório 
+                Inserir o Estado é obrigatório 
             </div>
         </div>
     </div>
-    
+</div>
     <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
     
 
