@@ -1,16 +1,16 @@
 <p>template-form works!</p>
 
-<form>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" >
 
     <div class="mb-3">
       <label for="nome" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="nome" aria-describedby="nameHelp" placeholder="Nome">
+      <input type="text" class="form-control" name="nome" id="nome"  placeholder="Nome" ngModel>
       <div id="nameHelp" class="form-text">Insira seu nome completo. </div>
     </div>
 
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="nome@email.com">
+      <input type="email" class="form-control" name="email" id="email" placeholder="nome@email.com" ngModel>
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
