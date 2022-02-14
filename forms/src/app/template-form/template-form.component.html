@@ -1,12 +1,15 @@
+
 <p>template-form works!</p>
 
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" >
 
     <div class="mb-3">
       <label for="nome" class="form-label">Nome</label>
-      <input type="text" class="form-control" name="nome" id="nome"  placeholder="Nome" [ngModel]="usuario.nome" required #nome>
+      <input type="text" class="form-control" name="nome" id="nome"  placeholder="Nome" [ngModel]="usuario.nome" required #nome="ngModel">
       
-      <div id="nameHelp" class="form-text">Insira seu nome completo. </div>
+        <div *ngIf="!nome.valid && nome.touched" class="alert alert-danger" role="alert"> 
+          Inserir o nome é obrigatório 
+        </div>
     </div>
 
     <div class="mb-3">
