@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 //import { FormGroup } from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-template-form',
@@ -18,20 +20,18 @@ export class TemplateFormComponent implements OnInit {
     bairro: null,
     cidade: null,
     estado: null,
-
-
   }
 
   onSubmit(form: any){
     console.log(form);
     //console.log(this.usuario);
   }
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
   }
 
-  verificaValidTouched(campo: any){
+  /*verificaValidTouched(campo: any){
     return !campo.valid && campo.touched;
   }
 
@@ -41,6 +41,16 @@ export class TemplateFormComponent implements OnInit {
       'has-feedback': this.verificaValidTouched(campo)
     }
 
+  }*/
+
+  consultaCEP(cep: any){
+    cep = cep.replace(/\D/g, '');
+    if(cep != ""){
+      let validacep = /^[0-9]{8}$/;
+      if(validacep.test(cep)){
+        this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe(res => console.log(res));
+      }
+    }
   }
 
 }
