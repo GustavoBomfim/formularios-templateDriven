@@ -42,12 +42,28 @@ export class DataFormComponent implements OnInit {
   onSubmit(){
     console.log(this.formulario.value);
 
-    this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
-    .subscribe(dados => {
-      console.log(dados);
-      this.resetar();
-    },
-    (error: any) => alert('erro'));
+    if(this.formulario.valid){
+        this.http.post('https://httpbin.org/post', JSON.stringify(this.formulario.value))
+        .subscribe(dados => {
+        console.log(dados);
+        this.resetar();
+      },
+      (error: any) => alert('erro'));
+    } else {
+        console.log('formulario invalido');
+        this.verificaValidacoesForm(this.formulario);
+      }
+  }
+
+  verificaValidacoesForm(formGroup: FormGroup){
+    Object.keys(formGroup.controls).forEach(campo => {
+      console.log(campo);
+      const controle = formGroup.get(campo);
+      controle?.markAsDirty();
+      if (controle instanceof FormGroup){
+        this.verificaValidacoesForm(controle);
+      }
+    });
 
   }
 
@@ -57,7 +73,7 @@ export class DataFormComponent implements OnInit {
 
   verificaValidTouched(campo: any){
 
-    return !this.formulario.get(campo)?.valid && this.formulario.get(campo)?.touched;
+    return !this.formulario.get(campo)?.valid && (this.formulario.get(campo)?.touched || this.formulario.get(campo)?.dirty);
 
   }
   aplicaCssErro(campo: any){
