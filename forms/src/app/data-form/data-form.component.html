@@ -1,5 +1,5 @@
 
-<p>template-form works!</p>
+<br>
 
 <form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="form-group" >
@@ -26,7 +26,65 @@
             </div>
         </div>
 
+        <div class="form-group">
+
+            <div class="row">
+
+                <div class="col-sm-3">
+                    <label for="cep" class="control-label">CEP</label>
+                    <input type="text" class="form-control" id="cep" placeholder="12345-678"   [ngClass]="aplicaCssErro('cep')" formControlName="cep">
+                </div>
+           
+                <div class="col-sm-3">
+                    <label for="numero" class="control-label">Número</label>
+                    <input type="text" class="form-control" id="numero" placeholder="123" [ngClass]="aplicaCssErro('numero')" formControlName="numero">
+                </div>
+                    
+                <div class="col-sm-6">
+                    <label for="complemento" class="control-label">Complemento</label>
+                    <input type="text" class="form-control" id="complemento" [ngClass]="aplicaCssErro('complemento')" formControlName="complemento"> 
+                </div>
+        
+            </div>
+        </div>
+
+
+        <div class="form-group" >
+            <div class="row">
+        
+                <div class="col-md-5">
+
+                    <label for="rua" class="control-label">Rua</label>
+                    <input type="text" class="form-control" id="rua" [ngClass]="aplicaCssErro('rua')" formControlName="rua" readonly>
+                        
+                </div>
+            
+        
+                <div class="col-md-3">
+                    
+                    <label for="bairro" class="control-label">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" [ngClass]="aplicaCssErro('bairro')" formControlName="bairro" readonly>
+
+                </div>
+            
+                <div class="col-md-3">
+                    
+                    <label for="cidade" class="control-label">Cidade</label>
+                    <input type="text" class="form-control" id="cidade" [ngClass]="aplicaCssErro('cidade')" formControlName="cidade" readonly>
+                </div>
+            
+                <div class="col-md-1">
+                    
+                    <label for="estado" class="control-label">Estado</label>
+                    <input type="text" class="form-control" id="estado" [ngClass]="aplicaCssErro('estado')" formControlName="estado" readonly>
+    
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <br> 
     <button type="submit" class="btn btn-primary">Submit</button>
     <button class="btn" (click)="resetar()">Cancelar</button>
     
