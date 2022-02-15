@@ -40,7 +40,7 @@
         </div>
         <div class="col-sm-12">
             <input type="text" class="form-control" id="cep" name="cep" placeholder="12345-678" [ngModel]="usuario.cep" required #cep="ngModel"
-                (blur)="consultaCEP(cep.value)"
+                (blur)="consultaCEP(cep.value, f)"
             >
             <div *ngIf="!cep.valid && cep.touched" class="alert alert-danger" role="alert"> 
                 Inserir o cep é obrigatório 

@@ -43,14 +43,45 @@ export class TemplateFormComponent implements OnInit {
 
   }*/
 
-  consultaCEP(cep: any){
+  consultaCEP(cep: any, form: any){
     cep = cep.replace(/\D/g, '');
-    if(cep != ""){
+    if (cep != "") {
       let validacep = /^[0-9]{8}$/;
-      if(validacep.test(cep)){
-        this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe(res => console.log(res));
-      }
+    if (validacep.test(cep)) {
+
+      this.resetaDadosForm(form);
+
+      this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe(res => this.populaDadosForm(res, form));
     }
   }
+  }
+  populaDadosForm(dados: any, formulario: any) {
 
+    formulario.form.patchValue({
+      endereco: {
+        cep: dados.cep,
+        complemento: dados.complemento,
+        rua: dados.logradouro,
+        bairro: dados.bairro,
+        cidade: dados.localidade,
+        estado: dados.uf
+      }
+    });
+  }
+
+  resetaDadosForm(formulario: any){
+    formulario.form.patchValue({
+      endereco: {
+        complemento: null,
+        rua: null,
+        bairro: null,
+        cidade: null,
+        estado: null
+      }
+    })
+  }
+
+
+
+  
 }
