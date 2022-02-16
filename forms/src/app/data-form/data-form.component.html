@@ -58,17 +58,19 @@
 
                     </div>
                 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         
                         <label for="cidade" class="control-label">Cidade</label>
                         <input type="text" class="form-control" id="cidade" [ngClass]="aplicaCssErro('endereco.cidade')" formControlName="cidade" readonly>
                     </div>
                 
-                    <div class="col-md-1">
+                    <div class="col-md-2" >
                         
-                        <label for="estado" class="control-label">Estado</label>
-                        <input type="text" class="form-control" id="estado" [ngClass]="aplicaCssErro('endereco.estado')" formControlName="estado" readonly>
-        
+                        <label for="estado" class="control-label" >Estado</label>
+                        <select class="form-control" id="estado" formControlName="estado" [ngClass]="aplicaCssErro('endereco.estado')">
+                            
+                            <option *ngFor="let estado of estados | async" [value]="estado.sigla"> {{ estado.nome }}</option>
+                        </select>
                     </div>
                 </div>
             </div>
