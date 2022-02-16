@@ -115,10 +115,17 @@
 
     </div>
 
-    <!--div class="form-group">
-        
-    
-    </div-->
+    <div class="form-group">
+        <div class="col-md-3" >
+            <div class="checkbox">
+                <input class="form-check-input" [ngClass]="aplicaCssErro('termos')" type="checkbox" id="flexCheckDefault" formControlName="termos">
+                <label class="form-check-label" for="flexCheckDefault" [ngClass]="aplicaCssErro('termos')">
+                    Aceito os termos.
+                </label>
+                
+            </div>
+        </div>
+    </div>
 
     <br> 
     <button type="submit" class="btn btn-primary" >Submit</button>
