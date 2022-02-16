@@ -15,6 +15,7 @@ export class DataFormComponent implements OnInit {
 
   formulario!: FormGroup;
   estados!: Observable<EstadoBr[]>;
+  cargos!: any[];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private dropdownService: DropdownService,
      private cepService: ConsultaCepService) { }
@@ -22,6 +23,8 @@ export class DataFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.estados = this.dropdownService.getEstadoBr();
+
+    this.cargos = this.dropdownService.getCargos();
 
     /*this.dropdownService.getEstadoBr().subscribe({
       next: (res) => {
@@ -45,7 +48,9 @@ export class DataFormComponent implements OnInit {
         bairro: [null, Validators.required],
         cidade: [null, Validators.required],
         estado: [null, Validators.required]
-      })
+      }),
+
+      cargo: [null]
     });
 
     Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
@@ -125,6 +130,16 @@ export class DataFormComponent implements OnInit {
         cidade: null,
         estado: null
       }
-    })
+    });
+  }
+
+  setarCargo(){
+    const cargo = { nome: 'Dev', nivel: 'Pleno', desc: 'Dev Pl'};
+    this.formulario.get('cargo')?.setValue(cargo);
+  }
+
+  compararCargos(obj1: any, obj2: any){
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
+
   }
 }
