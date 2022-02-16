@@ -118,11 +118,34 @@
     <div class="form-group">
         <div class="col-md-3" >
             <div class="checkbox">
-                <input class="form-check-input" [ngClass]="aplicaCssErro('termos')" type="checkbox" id="flexCheckDefault" formControlName="termos">
+                <input class="form-check-input" [ngClass]="aplicaCssErro('termos')" type="checkbox"  formControlName="termos">
                 <label class="form-check-label" for="flexCheckDefault" [ngClass]="aplicaCssErro('termos')">
                     Aceito os termos.
                 </label>
                 
+            </div>
+        </div>
+
+        
+    </div>
+    <br> <br>
+    
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-3" >
+                <div class="checkbox">
+                    <label for="frameworks">frameworks</label>
+
+                    <div class="form-check" formArrayName="frameworks" *ngFor="let item of getFrameworksControls(); let i = index">
+                        <input class="form-check-input" type="checkbox" id="flexCheckDefault" [formControlName]="i">
+
+                        <label class="form-check-label"  for="flexCheckDefault">
+                            {{frameworks[i]}}
+                        </label>
+
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </div>
