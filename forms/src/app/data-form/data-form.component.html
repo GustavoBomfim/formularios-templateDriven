@@ -88,12 +88,27 @@
             </select>
         </div>
 
+        <div class="col-md-2" >
+                        
+            <label for="tecnologias" class="control-label">Tecnologias</label>
+            <select multiple class="form-control" id="tecnologias" formControlName="tecnologias" [compareWith]="compararTecnologias">
+                
+                <option *ngFor="let tecnologia of tecnologias" [ngValue]="tecnologia.nome"> {{ tecnologia.desc }}</option>
+            </select>
+        </div>
+
     </div>
+
+    <!--div class="form-group">
+        
+    
+    </div-->
 
     <br> 
     <button type="submit" class="btn btn-primary" >Submit</button>
-    <button class="btn" (click)="resetar()">Cancelar</button>
-    <button class="btn" (click)="setarCargo()">Cargo</button>
+    <button class="btn btn-default" (click)="resetar()">Cancelar</button>
+    <button class="btn btn-info" (click)="setarCargo()">Cargo</button>
+    <button class="btn btn-info" (click)="setarTecnologias()">Tecnologia</button>
     
     <app-form-debug [form]="formulario"></app-form-debug>
 </form>

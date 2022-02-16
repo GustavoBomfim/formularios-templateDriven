@@ -16,6 +16,7 @@ export class DataFormComponent implements OnInit {
   formulario!: FormGroup;
   estados!: Observable<EstadoBr[]>;
   cargos!: any[];
+  tecnologias !: any[];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private dropdownService: DropdownService,
      private cepService: ConsultaCepService) { }
@@ -25,6 +26,8 @@ export class DataFormComponent implements OnInit {
     this.estados = this.dropdownService.getEstadoBr();
 
     this.cargos = this.dropdownService.getCargos();
+
+    this.tecnologias = this.dropdownService.getTecnologias();
 
     /*this.dropdownService.getEstadoBr().subscribe({
       next: (res) => {
@@ -50,7 +53,8 @@ export class DataFormComponent implements OnInit {
         estado: [null, Validators.required]
       }),
 
-      cargo: [null]
+      cargo: [null],
+      tecnologias: [null]
     });
 
     Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
@@ -140,6 +144,14 @@ export class DataFormComponent implements OnInit {
 
   compararCargos(obj1: any, obj2: any){
     return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
+  }
 
+  compararTecnologias(obj1: any, obj2: any){
+    return obj1 && obj2 ? (obj1.nome === obj2.nome && obj1.nivel === obj2.nivel) : obj1 === obj2;
+  }
+
+
+  setarTecnologias(){
+    this.formulario.get('tecnologias')?.setValue(['java', 'javascript', 'php']);
   }
 }
