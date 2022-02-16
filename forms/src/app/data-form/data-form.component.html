@@ -16,6 +16,12 @@
            
         </div>
 
+        <div class="mb-3">
+            <label for="confirmarEmail" class="form-label">Confirmar Email</label>     
+            <input type="confirmarEmail" class="form-control" formControlName="confirmarEmail" id="confirmarEmail" placeholder="nome@email.com" [ngClass]="aplicaCssErro('confirmarEmail')"> 
+           
+        </div>
+
         <div formGroupName="endereco">
             <div class="form-group">
 
@@ -129,7 +135,7 @@
         
     </div>
     <br> <br>
-    
+
     <div class="form-group">
         <div class="row">
             <div class="col-md-3" >
