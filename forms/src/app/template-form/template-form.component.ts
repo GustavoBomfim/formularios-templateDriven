@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { FormGroup } from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import { ConsultaCepService } from '../shared/services/consulta-cep.service';
 
 @Component({
   selector: 'app-template-form',
@@ -33,34 +34,17 @@ export class TemplateFormComponent implements OnInit {
     }); 
     
   }
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cepService: ConsultaCepService) { }
 
   ngOnInit(): void {
   }
 
-  /*verificaValidTouched(campo: any){
-    return !campo.valid && campo.touched;
-  }
-
-  aplicaCssErro(campo: any){
-    return {
-      'has-error': this.verificaValidTouched(campo),
-      'has-feedback': this.verificaValidTouched(campo)
-    }
-
-  }*/
-
   consultaCEP(cep: any, form: any){
     cep = cep.replace(/\D/g, '');
-    if (cep != "") {
-      let validacep = /^[0-9]{8}$/;
-    if (validacep.test(cep)) {
 
-      this.resetaDadosForm(form);
-
-      this.http.get(`//viacep.com.br/ws/${cep}/json`).subscribe(res => this.populaDadosForm(res, form));
+    if( cep != null && cep !== ''){
+      this.cepService.consultaCEP(cep).subscribe(res => this.populaDadosForm(res, form));;
     }
-  }
   }
   populaDadosForm(dados: any, formulario: any) {
 
