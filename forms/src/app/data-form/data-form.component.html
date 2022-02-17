@@ -7,6 +7,14 @@
         [control]="formulario.get('nome')">
     </app-input-field>
 
+    <app-input-field class="col-sm-12" formControlName="email" [classeCss]="aplicaCssErro('email')" id="email" label="Email" 
+        [control]="formulario.get('email')">
+    </app-input-field>
+
+    <app-input-field class="col-sm-12" formControlName="confirmarEmail" [classeCss]="aplicaCssErro('confirmarEmail')" id="confirmarEmail" label="confirmarEmail" 
+        [control]="formulario.get('confirmarEmail')">
+    </app-input-field>
+
     <!--div class="form-group" >
 
         <div class="mb-3">
@@ -15,8 +23,9 @@
             <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
         </div-->
 
+        
     <div class="form-group" >
-        <div class="mb-3">
+        <!--div class="mb-3">
             <label for="email" class="form-label">Email</label>     
             <input type="email" class="form-control" formControlName="email" id="email" placeholder="nome@email.com" [ngClass]="aplicaCssErro('email')"> 
            
@@ -26,7 +35,7 @@
             <label for="confirmarEmail" class="form-label">Confirmar Email</label>     
             <input type="confirmarEmail" class="form-control" formControlName="confirmarEmail" id="confirmarEmail" placeholder="nome@email.com" [ngClass]="aplicaCssErro('confirmarEmail')"> 
            
-        </div>
+        </div-->
 
         <div formGroupName="endereco">
             <div class="form-group">
