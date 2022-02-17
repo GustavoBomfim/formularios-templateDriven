@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { DropdownService } from './services/dropdown.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorMsgComponent } from './error-msg/error-msg.component';
 
 
 
 @NgModule({
   declarations: [
-    FormDebugComponent
+    FormDebugComponent,
+    ErrorMsgComponent
   ],
 
   imports: [
@@ -17,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   
   exports: [
-    FormDebugComponent
+    FormDebugComponent,
+    ErrorMsgComponent
   ],
   providers: [
     DropdownService

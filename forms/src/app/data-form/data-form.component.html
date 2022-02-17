@@ -7,7 +7,7 @@
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
             <input type="text" class="form-control" formControlName="nome" id="nome"  placeholder="Nome" [ngClass]="aplicaCssErro('nome')">
-            
+            <app-error-msg [control]="formulario.get('nome')" label="Nome"></app-error-msg>
         </div>
 
         <div class="mb-3">
