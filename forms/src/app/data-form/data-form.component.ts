@@ -4,10 +4,10 @@ import {HttpClient} from '@angular/common/http';
 import { EstadoBr } from '../shared/models/estado-br';
 import { DropdownService } from '../shared/services/dropdown.service';
 import { ConsultaCepService } from '../shared/services/consulta-cep.service';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { FormValidations } from '../shared/form-validations';
 import { VerificaEmailService } from './services/verifica-email.service';
-import { map } from 'rxjs/operators';
+import { map, distinctUntilChanged, tap, switchMap, EMPTY} from 'rxjs';///operators';
 
 @Component({
   selector: 'app-data-form',
@@ -71,8 +71,19 @@ export class DataFormComponent implements OnInit {
       frameworks: this.buildFrameworks()
     });
 
+    this.formulario.get('endereco.cep')?.statusChanges
+    .pipe(distinctUntilChanged(), tap((value: any) => console.log('status CEP:', value)),
+    switchMap((status: any) => status === 'VALID' ? this.cepService.consultaCEP(this.formulario.get('endereco.cep')?.value)
+    : EMPTY
+    ))
+    .subscribe(dados => dados ? this.populaDadosForm(dados) : {});
+
+
     Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
   }
+
+  
+
 
   buildFrameworks(){
 
